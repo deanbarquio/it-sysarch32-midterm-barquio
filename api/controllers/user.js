@@ -89,9 +89,12 @@ exports.user_login = (req, res, next) => {
 };
 
 exports.user_delete = (req, res, next) => {
-  User.remove({ _id: req.params.userId })
+  User.deleteOne({ _id: req.params.userId })
     .exec()
     .then(result => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: "No valid entry found for provided ID" });
+      }
       res.status(200).json({
         message: "User deleted"
       });

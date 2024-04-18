@@ -40,7 +40,7 @@ exports.orders_create_order = (req, res, next) => {
         });
       }
       const order = new Order({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         quantity: req.body.quantity,
         product: req.body.productId
       });
@@ -95,9 +95,12 @@ exports.orders_get_order = (req, res, next) => {
 };
 
 exports.orders_delete_order = (req, res, next) => {
-  Order.remove({ _id: req.params.orderId })
+  Order.deleteOne({ _id: req.params.orderId })
     .exec()
     .then(result => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: "No valid entry found for provided ID" });
+      }
       res.status(200).json({
         message: "Order deleted",
         request: {
@@ -108,6 +111,7 @@ exports.orders_delete_order = (req, res, next) => {
       });
     })
     .catch(err => {
+      console.log(err);
       res.status(500).json({
         error: err
       });

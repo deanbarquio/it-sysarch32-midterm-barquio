@@ -123,9 +123,12 @@ exports.products_update_product = (req, res, next) => {
 
 exports.products_delete = (req, res, next) => {
   const id = req.params.productId;
-  Product.remove({ _id: id })
+  Product.deleteOne({ _id: id })
     .exec()
     .then(result => {
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: "No valid entry found for provided ID" });
+      }
       res.status(200).json({
         message: "Product deleted",
         request: {
