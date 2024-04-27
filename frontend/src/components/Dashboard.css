@@ -1,0 +1,370 @@
+
+.dashboard-container {
+    margin: 50px auto; /* Center the container */
+    padding: 20px;
+    width: 80%; /* Adjust the width as needed */
+    background-color: #f0f0f0; /* Background color */
+    border: 1px solid #ccc; /* Border */
+    border-radius: 10px; 
+  }
+  
+  .dashboard-container h2 {
+    text-align: center; /* Center align the heading */
+    color: #333; /* Heading color */
+  }
+  
+  .dashboard-container p {
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-container button {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff2e00; /* Button background color */
+    color: #fff; /* Button text color */
+    cursor: pointer;
+  }
+  
+  .dashboard-container button:hover {
+    background-color: #ED7D31; /* Button background color on hover */
+  }
+
+
+
+
+  body{
+    background-color: #FEFAF6;
+}
+.parentCont{
+    display: flex;
+    justify-content: center;
+}
+.wholeCont{
+    margin-top: 3%;
+    width:80vw;
+}
+.addNsearch{
+    display: flex;
+    gap: 10px;
+    width: 700px;
+    margin-left: auto;
+    
+}
+.addprdctbtn, .ordersprdctbtn, .deleteBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color:#EE7214 ;
+    color: #fefefe;
+    /* width:150px; */
+}
+.ordersprdctbtn{
+    background-color: #6C5F5B;
+}
+.searchBtnPrdct{
+    background-color: rgba(255, 133, 81, 0.5);
+    margin-right: 10px;
+}
+.prdctsJumbotron{
+    border-radius: 10px;
+    height:250px;
+    background-image: url('https://miro.medium.com/v2/resize:fit:720/format:webp/1*iSkPrAE_-r6mAkldbwcgrw.jpeg');
+    background-position: 10% 80%;
+    background-size: cover;
+}
+
+
+.jumbotroninner{
+    width: 100%;
+    height: 100%;
+    /* background-color: #FFDEDE; */
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(108, 95, 91, 0.5),  rgba(108, 95, 91, 0.7));
+    border-radius: 10px;
+    display: flex;
+    align-items:start;
+    padding-left: 5%;
+    flex-direction: column;
+    justify-content: center;
+    color: #fefefe;
+}
+/* .productImgDiv {
+    position: relative;
+    width: 100%;
+} */
+
+.productImg {
+    /* position: absolute; */
+    /* top: 0;
+    left: 0; */
+    width: 250px;
+    height: 250px;
+    /* object-fit: cover; */
+}
+
+.prdctDtls *{
+    margin: 0;
+}
+.prdctName{
+    font-size: 18px;
+    font-weight: 500;
+}
+.prdctDiv{
+    background-color: #fefefe;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 30px;
+    border-radius: 15px;
+}
+.prdctList{
+    display: flex;
+    /* gap: 25px; */
+    flex-wrap: wrap;
+    margin-top: 30px;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+}
+
+.prdctPrice{
+    color: #ED7D31;
+    font-weight: 600;
+}
+/* .prdctDiv{
+    box-shadow: ;
+} */
+
+.orderList{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #E5E4E2 ;
+    padding: 10px 0px;
+    /* align-items: end; */
+}
+.quanityDiv{
+    display: flex;
+    align-items: end;
+    
+    p{
+        margin:0;
+    }
+}
+
+/* Modal styles */
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: fit-content;
+    /* max-width: 800px; Adjust max-width as needed */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+.productImgModal{
+    width: 400px;
+    height: 400px;
+}
+/* .modalProduct{
+    display: flex;
+} */
+.addorderBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color:#EE7214 ;
+    color: #fefefe;
+    width: 100%;
+    margin-top: 5%;
+}
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 1rem);
+}
+
+.modal-lg {
+  max-width: 80%; /* This sets the maximum width of the modal to 80% of the viewport width */
+}
+.searchedItemsContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .searchedItemsContainer .prdctDiv {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  .deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .deleteBtn i {
+    color: red;
+    font-size: 1.5rem;
+    margin-right: 5px;
+  }
+  .orderConfirmationOverlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    z-index: 9999; /* Ensure it's on top of other content */
+  }
+  .confirmation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* ensure it's above other content */
+  }
+  
+  .confirmation-modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .btn1 {
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn-confirm {
+    background-color: #4CAF50; /* or any color that indicates a primary action */
+    color: white;
+  }
+  
+  .btn-cancel {
+    background-color: transparent;
+    color: #555;
+    border: 1px solid #ccc;
+  }
+  .orders-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    visibility: hidden; /* Hide by default */
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+  }
+  
+  .orders-overlay.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .orders-modal {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 600px;
+  }
+  .orders-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .titleOrder {
+    text-align: center;
+  }
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .orders-table th, .orders-table td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .delete-button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .delete-button:hover {
+    background-color: #ff2e00;
+  }
+  .back-button {
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #ccc;
+}
+.btn2{
+    margin-left: 10px;
+}

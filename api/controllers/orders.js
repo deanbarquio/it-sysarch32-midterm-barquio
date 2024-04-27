@@ -6,7 +6,7 @@ const Product = require("../models/product");
 exports.orders_get_all = (req, res, next) => {
   Order.find()
     .select("product quantity _id")
-    .populate("product", "name")
+    .populate("product", "name price") // Ensure 'price' is also being populated if it's stored within the product
     .exec()
     .then(docs => {
       res.status(200).json({

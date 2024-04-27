@@ -42,7 +42,7 @@ exports.products_create_product = (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     price: req.body.price,
-    productImage: req.file.path
+    productImage: req.file.path // Assuming you're using multer for file uploads
   });
   product
     .save()
@@ -69,31 +69,92 @@ exports.products_create_product = (req, res, next) => {
     });
 };
 
+
+// exports.products_create_product = (req, res, next) => {
+//   const product = new Product({
+//     _id: new mongoose.Types.ObjectId(),
+//     name: req.body.name,
+//     price: req.body.price,
+//     productImage: req.file.path
+//   });
+//   product
+//     .save()
+//     .then(result => {
+//       console.log(result);
+//       res.status(201).json({
+//         message: "Created product successfully",
+//         createdProduct: {
+//           name: result.name,
+//           price: result.price,
+//           _id: result._id,
+//           request: {
+//             type: "GET",
+//             url: "http://localhost:3000/products/" + result._id
+//           }
+//         }
+//       });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({
+//         error: err
+//       });
+//     });
+// };
+
 exports.products_get_product = (req, res, next) => {
-  const id = req.params.productId;
-  Product.findById(id)
-    .select("name price _id productImage")
-    .exec()
-    .then(doc => {
-      console.log("From database", doc);
-      if (doc) {
-        res.status(200).json({
-          product: doc,
-          request: {
-            type: "GET",
-            url: "http://localhost:3000/products"
-          }
-        });
-      } else {
-        res
-          .status(404)
-          .json({ message: "No valid entry found for provided ID" });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
+  // Check if the request includes a search query
+  if (req.query.name) {
+    // Perform a case-insensitive search for products by name
+    const searchQuery = new RegExp(req.query.name, 'i');
+
+    // Find products that match the search query
+    Product.find({ name: searchQuery })
+      .select('name price _id productImage')
+      .exec()
+      .then(products => {
+        console.log('Products matching search query:', products);
+        if (products.length > 0) {
+          res.status(200).json({
+            products: products,
+            request: {
+              type: 'GET',
+              url: 'http://localhost:3000/products'
+            }
+          });
+        } else {
+          res.status(404).json({ message: 'No products found matching the search query' });
+        }
+      })
+      .catch(err => {
+        console.error('Error searching for products:', err);
+        res.status(500).json({ error: err });
+      });
+  } else {
+    // If no search query is provided, continue with retrieving a single product by ID
+    const id = req.params.productId;
+    Product.findById(id)
+      .select('name price _id productImage')
+      .exec()
+      .then(doc => {
+        console.log('From database', doc);
+        if (doc) {
+          res.status(200).json({
+            product: doc,
+            request: {
+              type: 'GET',
+              url: 'http://localhost:3000/products'
+            }
+          });
+        } else {
+          res.status(404).json({ message: 'No valid entry found for provided ID' });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: err });
+      });
+  }
 };
 
 exports.products_update_product = (req, res, next) => {
